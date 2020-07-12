@@ -1,0 +1,40 @@
+package capstone.capstone;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.TestListenerAdapter;
+import org.testng.TestNG;
+import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+@Test
+public class App {
+
+	WebDriver driver;
+	public void hello() {
+	System.setProperty("webdriver.chrome.driver", "D://chromedriver_win32//chromedriver.exe");//D://chromedriver_win32//chromedriver.exe
+	ChromeOptions options =new ChromeOptions();
+	options.addArguments("--headless");
+
+	driver = new ChromeDriver(options);  
+	driver.get("http://13.233.101.101/");	
+	
+
+	driver.findElement(By.xpath("/html/body")).isDisplayed();
+
+	
+	
+}
+public static void main(String[] args) {
+TestListenerAdapter adap = new TestListenerAdapter();
+TestNG testng = new TestNG();
+testng.setTestClasses(new Class[] {App.class});
+testng.addListener(adap);
+testng.run();
+
+}
+
+
+
+}

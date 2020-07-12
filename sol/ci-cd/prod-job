@@ -1,0 +1,10 @@
+n=$(sudo docker ps -a -q | wc -l)
+if [ $n -eq 0 ]
+then
+sudo docker build -t production /home/ubuntu/jenkins/workspace/prod1/.
+sudo docker run -it --name prod1 -p 80:80 -d production
+else
+sudo docker rm -f $(sudo docker ps -a -q)
+sudo docker build -t production /home/ubuntu/jenkins/workspace/prod1/.
+sudo docker run -it --name prod1 -p 80:80 -d production
+fi
